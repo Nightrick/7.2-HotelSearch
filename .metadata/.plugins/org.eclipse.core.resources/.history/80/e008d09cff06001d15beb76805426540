@@ -1,0 +1,29 @@
+package co.grandcircus.HotelSearch;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HotelController {
+	
+	@Autowired
+	private HotelRepository repo;
+	
+	@RequestMapping("/")
+	public String homePage() {
+		return "homepage";
+	}
+	
+	@PostMapping("/results")
+	public String homePage(Model model) {
+		
+		
+		
+		
+		return "results";
+	}
+
+}

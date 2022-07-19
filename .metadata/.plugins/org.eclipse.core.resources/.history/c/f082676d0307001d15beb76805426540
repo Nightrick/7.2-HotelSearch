@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Results!</title>
+</head>
+<body>
+<h1>Hotel Results for ${hotel.city}</h1>
+<div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>City</th>
+			<th>Price Per Night</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="searchResult" items="${hotels}">
+			<tr>
+				<td>${searchResult.name}</td>
+				<td>${searchResult.city}</td>
+				<td>${searchResult.pricePerNight}</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+	<a class="button" href="/">Home!</button>
+</div>
+</body>
+</html>
