@@ -1,0 +1,49 @@
+package co.grandcircus.HotelSearch;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class HotelController {
+	
+	@Autowired
+	private HotelRepository repo;
+	
+	@RequestMapping("/")
+	public String homePage() {
+		return "homepage";
+	}
+	
+	@PostMapping("/results")
+	public ModelAndView searchResults(Model model, Hotel hotel, @RequestParam String city) {
+		
+		ModelAndView modelAndView = new ModelAndView("results");
+		
+		List<Hotel> woodhavenHotels = repo.findByCity("Woodhaven");
+		List<Hotel> brownstownHotels = repo.findByCity("Brownstown");
+		List<Hotel> rockwoodHotels = repo.findByCity("Rockwood");
+		List<Hotel> chicagoHotels = repo.findByCity("Chicago");
+		
+		if(city.equals("Woodhaven")) {
+			modelAndView.addObject("searchResult", woodhavenHotels);
+		} else if(city.equals("Brownstown")) {
+			modelAndView.addObject("searchResult", brownstownHotels);
+		} else if(city.equals("Rockwood")) {
+			modelAndView.addObject("searchResult", rockwoodHotels);
+		} else if (city.equals("Chicago")){
+			modelAndView.addObject("searchResult", chicagoHotels);
+		}
+		
+		return modelAndView;
+	}
+	
+	
+
+}

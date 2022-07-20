@@ -2,7 +2,9 @@ package co.grandcircus.HotelSearch;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+//The name in the quotes must match the DB collection name (case sensitive)
 @Document("hotels")
 public class Hotel {
 	
@@ -10,7 +12,8 @@ public class Hotel {
 	private String id;
 	private String name;
 	private String city;
-	private Integer pricePerNight;
+	@Field("pricepernight") private int pricePerNight;
+	//The @Field annotation allows us to indicate the name of the variable in the linked DB, if the variable name is different than the field name listed
 	
 	public String getId() {
 		return id;
@@ -30,10 +33,10 @@ public class Hotel {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public Integer getPricePerNight() {
+	public int getPricePerNight() {
 		return pricePerNight;
 	}
-	public void setPricePerNight(Integer pricePerNight) {
+	public void setPricePerNight(int pricePerNight) {
 		this.pricePerNight = pricePerNight;
 	}
 
@@ -41,7 +44,7 @@ public class Hotel {
 		
 	}
 	
-	public Hotel(String id, String name, String city, Integer pricePerNight) {
+	public Hotel(String id, String name, String city, int pricePerNight) {
 		this.id = id;
 		this.name = name;
 		this.city = city;
